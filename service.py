@@ -1,6 +1,7 @@
 import bentoml
 from PIL.Image import Image
 import numpy as np
+from typing import Dict
 from typing import List
 from pydantic import Field
 
@@ -38,7 +39,7 @@ class CLIPService:
         return text_embeddings.cpu().detach().numpy()
     
     @bentoml.api
-    async def rank(self, queries: List[Image],  candidates : List[str] = Field(["picture of a dog", "picture of a cat"], description="list of description candidates")) -> dict[str, List[List[float]]]:
+    async def rank(self, queries: List[Image], candidates : List[str] = Field(["picture of a dog", "picture of a cat"], description="list of description candidates")) -> Dict[str, List[List[float]]]:
         '''
         return the similarity between the query images and the candidate texts
         '''
