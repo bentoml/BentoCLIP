@@ -7,7 +7,11 @@ from pydantic import Field
 
 MODEL_ID = "openai/clip-vit-base-patch32"
 
-@bentoml.service()
+@bentoml.service(
+    resources={
+        "memory" : "4Gi"
+    }
+)
 class CLIPService:
     
     def __init__(self) -> None:
