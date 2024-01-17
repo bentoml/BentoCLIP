@@ -4,17 +4,17 @@ import numpy as np
 from typing import List
 from pydantic import Field
 
+MODEL_ID = "openai/clip-vit-base-patch32"
 
 @bentoml.service()
 class CLIPService:
-    model_ref = bentoml.models.get("openai-clip")
     
     def __init__(self) -> None:
         import torch
         from transformers import CLIPModel, CLIPProcessor
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = CLIPModel.from_pretrained(self.model_ref.path).to(self.device)
-        self.processor = CLIPProcessor.from_pretrained(self.model_ref.path)
+        self.model = CLIPModel.from_pretrained(MODEL_ID).to(self.device)
+        self.processor = CLIPProcessor.from_pretrained(MODEL_ID)
         self.logit_scale = self.model.logit_scale.item() if self.model.logit_scale.item() else 4.60517
         print("Model clip loaded", "device:", self.device)
 
