@@ -53,9 +53,9 @@ with bentoml.SyncHTTPClient("http://localhost:3000") as client:
 
 ## Deploy the application to BentoCloud
 
-After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. A configuration YAML file (`bentofile.yaml`) is used to define the build options for your application. It is used for packaging your application into a Bento. See [Bento build options](https://docs.bentoml.com/en/latest/concepts/bento.html#bento-build-options) to learn more.
+After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. A YAML configuration file (`bentofile.yaml`) is used to define the build options and package your application into a Bento. See [Bento build options](https://docs.bentoml.com/en/latest/concepts/bento.html#bento-build-options) to learn more.
 
-Make sure you have logged in to BentoCloud, then run the following command in your project directory to deploy the application to BentoCloud. Under the hood, this commands automatically builds a Bento, push the Bento to BentoCloud, and deploy it on BentoCloud.
+Make sure you have logged in to BentoCloud, then run the following command in your project directory to deploy to BentoCloud. Under the hood, this command builds a Bento, pushes, and deploys it on BentoCloud.
 
 ```bash
 bentoml deploy .
