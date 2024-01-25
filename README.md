@@ -1,12 +1,12 @@
-CLIP (Contrastive Language–Image Pre-training) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task. This makes it ideal for a wide range of applications, including content recommendation, image captioning, visual search, and automated content moderation.
+CLIP (Contrastive Language–Image Pre-training) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task.
 
-This document demonstrates how to build a CLIP application using BentoML, powered by the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model.
+This project demonstrates how to build a CLIP application using BentoML, powered by the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model.
 
-## **Prerequisites**
+## Prerequisites
 
 - You have installed Python 3.8+ and `pip`. See the [Python downloads page](https://www.python.org/downloads/) to learn more.
-- You have a basic understanding of key concepts in BentoML, such as Services. We recommend you read [Quickstart](https://docs.bentoml.com/en/latest/get-started/quickstart.html) first.
-- (Optional) We recommend you create a virtual environment for dependency isolation for this project. See Installation for details.
+- You have a basic understanding of key concepts in BentoML, such as Services. We recommend you read [Quickstart](https://docs.bentoml.com/en/1.2/get-started/quickstart.html) first.
+- (Optional) We recommend you create a virtual environment for dependency isolation for this project. See the [Conda documentation](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or the [Python documentation](https://docs.python.org/3/library/venv.html) for details.
 
 ## Install dependencies
 
@@ -26,7 +26,7 @@ $ bentoml serve .
 Model clip loaded device: cuda
 ```
 
-Access the Service UI at [http://0.0.0.0:3000](http://0.0.0.0:3000/). You can interact with it using Swagger UI or in other different ways:
+The Service is accessible at [http://localhost:3000](http://localhost:3000/). You can interact with it using the Swagger UI or in other different ways:
 
 CURL
 
@@ -37,7 +37,7 @@ curl -s \
      http://localhost:3000/encode_image
 ```
 
-Python Client
+BentoML client
 
 ```python
 import bentoml
@@ -51,16 +51,16 @@ with bentoml.SyncHTTPClient("http://localhost:3000") as client:
     )
 ```
 
-## Deploy the application to BentoCloud
+## Deploy to production
 
 After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. A YAML configuration file (`bentofile.yaml`) is used to define the build options and package your application into a Bento. See [Bento build options](https://docs.bentoml.com/en/latest/concepts/bento.html#bento-build-options) to learn more.
 
-Make sure you have logged in to BentoCloud, then run the following command in your project directory to deploy to BentoCloud. Under the hood, this command builds a Bento, pushes, and deploys it on BentoCloud.
+Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/1.2/bentocloud/how-tos/manage-access-token.html), then run the following command in your project directory to deploy the application to BentoCloud.
 
 ```bash
 bentoml deploy .
 ```
 
-**Note**: Alternatively, you can manually build the Bento, containerize the Bento as a Docker image, and deploy it in any Docker-compatible environment. See [Docker deployment](https://docs.bentoml.org/en/latest/concepts/deploy.html#docker) for details.
-
 Once the application is up and running on BentoCloud, you can access it via the exposed URL.
+
+**Note**: Alternatively, you can use BentoML to generate a [Docker image](https://docs.bentoml.com/en/1.2/guides/containerization.html) for a custom deployment.
