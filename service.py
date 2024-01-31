@@ -12,7 +12,7 @@ MODEL_ID = "openai/clip-vit-base-patch32"
         "memory" : "4Gi"
     }
 )
-class CLIPService:
+class CLIP:
     
     def __init__(self) -> None:
         import torch
@@ -83,4 +83,4 @@ class CLIPService:
     
 
 if __name__ == "__main__":
-    CLIPService.serve_http()
+    CLIP.serve_http()

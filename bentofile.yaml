@@ -1,4 +1,4 @@
-service: "service:CLIPService"
+service: "service:CLIP"
 labels:
   owner: bentoml-team
   project: gallery
