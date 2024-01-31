@@ -11,6 +11,8 @@ This project demonstrates how to build a CLIP application using BentoML, powered
 ## Install dependencies
 
 ```bash
+git clone https://github.com/bentoml/BentoClip.git
+cd BentoClip
 pip install -r requirements.txt
 ```
 
@@ -18,7 +20,7 @@ pip install -r requirements.txt
 
 We have defined a BentoML Service in `service.py`. Run `bentoml serve` in your project directory to start the Service.
 
-```python
+```bash
 $ bentoml serve .
 
 2024-01-08T09:07:28+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "service:CLIPService" can be accessed at http://localhost:3000/metrics.
