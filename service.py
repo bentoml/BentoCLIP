@@ -79,8 +79,3 @@ class CLIP:
             scores - np.max(scores, axis=-1, keepdims=True)
         )  # Subtract max for numerical stability
         return exp_scores / np.sum(exp_scores, axis=-1, keepdims=True)
-
-    
-
-if __name__ == "__main__":
-    CLIP.serve_http()
