@@ -1,5 +1,5 @@
 <div align="center">
-    <h1 align="center">Serving Clip with BentoML</h1>
+    <h1 align="center">Serving CLIP with BentoML</h1>
 </div>
 
 [CLIP (Contrastive Language–Image Pre-training)](https://openai.com/research/clip) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task.
