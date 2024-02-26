@@ -1,6 +1,10 @@
-CLIP (Contrastive Language–Image Pre-training) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task.
+<div align="center">
+    <h1 align="center">Serving CLIP with BentoML</h1>
+</div>
 
-This project demonstrates how to build a CLIP application using BentoML, powered by the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model.
+[CLIP (Contrastive Language–Image Pre-training)](https://openai.com/research/clip) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task.
+
+This is a BentoML example project, demonstrating how to build a CLIP inference API server, using the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model. See [here](https://github.com/bentoml/BentoML?tab=readme-ov-file#%EF%B8%8F-what-you-can-build-with-bentoml) for a full list of BentoML example projects.
 
 ## Prerequisites
 
@@ -39,7 +43,7 @@ curl -s \
      http://localhost:3000/encode_image
 ```
 
-BentoML client
+Python client
 
 ```python
 import bentoml
@@ -53,11 +57,13 @@ with bentoml.SyncHTTPClient("http://localhost:3000") as client:
     )
 ```
 
-## Deploy to production
+For detailed explanations of the Service code, see [CLIP embeddings](https://docs.bentoml.org/en/latest/use-cases/embeddings/clip-embeddings.html).
 
-After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. A YAML configuration file (`bentofile.yaml`) is used to define the build options and package your application into a Bento. See [Bento build options](https://docs.bentoml.com/en/latest/concepts/bento.html#bento-build-options) to learn more.
+## Deploy to BentoCloud
 
-Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/1.2/bentocloud/how-tos/manage-access-token.html), then run the following command in your project directory to deploy the application to BentoCloud.
+After the Service is ready, you can deploy the application to BentoCloud for better management and scalability. [Sign up](https://www.bentoml.com/) if you haven't got a BentoCloud account.
+
+Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/latest/bentocloud/how-tos/manage-access-token.html), then run the following command to deploy it.
 
 ```bash
 bentoml deploy .
@@ -65,4 +71,4 @@ bentoml deploy .
 
 Once the application is up and running on BentoCloud, you can access it via the exposed URL.
 
-**Note**: Alternatively, you can use BentoML to generate a [Docker image](https://docs.bentoml.com/en/1.2/guides/containerization.html) for a custom deployment.
+**Note**: For custom deployment in your own infrastructure, use [BentoML to generate an OCI-compliant image](https://docs.bentoml.com/en/latest/guides/containerization.html).
