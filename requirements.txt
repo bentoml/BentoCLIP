@@ -1,4 +1,4 @@
 bentoml>=1.2.2
 pillow==10.2.0
 torch==2.1.2
-transformers==4.37.1
+transformers==4.38.0
