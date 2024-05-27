@@ -4,7 +4,7 @@
 
 [CLIP (Contrastive Language–Image Pre-training)](https://openai.com/research/clip) is a machine learning model developed by OpenAI. It is versatile and excels in tasks like zero-shot learning, image classification, and image-text matching without needing specific training for each task.
 
-This is a BentoML example project, demonstrating how to build a CLIP inference API server, using the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model. See [here](https://github.com/bentoml/BentoML?tab=readme-ov-file#%EF%B8%8F-what-you-can-build-with-bentoml) for a full list of BentoML example projects.
+This is a BentoML example project, demonstrating how to build a CLIP inference API server, using the [clip-vit-base-patch32](https://huggingface.co/openai/clip-vit-base-patch32) model. See [here](https://github.com/bentoml/BentoML/tree/main/examples) for a full list of BentoML example projects.
 
 ## Prerequisites
 
