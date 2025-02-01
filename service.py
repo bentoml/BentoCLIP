@@ -7,7 +7,11 @@ from pydantic import Field
 
 MODEL_ID = "openai/clip-vit-base-patch32"
 
+runtime_image = bentoml.images.PythonImage(python_version="3.11")\
+                            .requirements_file("requirements.txt")
+
 @bentoml.service(
+    image=runtime_image,
     resources={
         "memory" : "4Gi"
     }

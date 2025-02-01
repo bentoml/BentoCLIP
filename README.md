@@ -21,7 +21,7 @@ pip install -r requirements.txt
 We have defined a BentoML Service in `service.py`. Run `bentoml serve` in your project directory to start the Service.
 
 ```bash
-$ bentoml serve .
+$ bentoml serve service:CLIP
 
 2024-01-08T09:07:28+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "service:CLIPService" can be accessed at http://localhost:3000/metrics.
 2024-01-08T09:07:28+0000 [INFO] [cli] Starting production HTTP BentoServer from "service:CLIPService" listening on http://localhost:3000 (Press CTRL+C to quit)
@@ -62,7 +62,7 @@ After the Service is ready, you can deploy the application to BentoCloud for bet
 Make sure you have [logged in to BentoCloud](https://docs.bentoml.com/en/latest/bentocloud/how-tos/manage-access-token.html), then run the following command to deploy it.
 
 ```bash
-bentoml deploy .
+bentoml deploy service:CLIP
 ```
 
 Once the application is up and running on BentoCloud, you can access it via the exposed URL.
