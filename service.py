@@ -7,8 +7,14 @@ from pydantic import Field
 
 MODEL_ID = "openai/clip-vit-base-patch32"
 
-runtime_image = bentoml.images.PythonImage(python_version="3.11")\
-                            .requirements_file("requirements.txt")
+runtime_image = bentoml.images.PythonImage(
+    python_version="3.11"
+).requirements_file("requirements.txt")
+
+
+def _resize_img(img: Image):
+    return img.resize((224, 224))
+
 
 @bentoml.service(
     image=runtime_image,
@@ -17,13 +23,15 @@ runtime_image = bentoml.images.PythonImage(python_version="3.11")\
     }
 )
 class CLIP:
+
+    hf_model = bentoml.models.HuggingFaceModel(MODEL_ID)
     
     def __init__(self) -> None:
         import torch
         from transformers import CLIPModel, CLIPProcessor
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = CLIPModel.from_pretrained(MODEL_ID).to(self.device)
-        self.processor = CLIPProcessor.from_pretrained(MODEL_ID)
+        self.model = CLIPModel.from_pretrained(self.hf_model).to(self.device)
+        self.processor = CLIPProcessor.from_pretrained(self.hf_model)
         self.logit_scale = self.model.logit_scale.item() if self.model.logit_scale.item() else 4.60517
         print("Model clip loaded", "device:", self.device)
 
@@ -32,6 +40,7 @@ class CLIP:
         '''
         generate the 512-d embeddings of the images
         '''
+        items = [_resize_img(item) for item in items]
         inputs = self.processor(images=items, return_tensors="pt", padding=True).to(self.device)
         image_embeddings = self.model.get_image_features(**inputs)
         return image_embeddings.cpu().detach().numpy()
@@ -51,6 +60,7 @@ class CLIP:
         '''
         return the similarity between the query images and the candidate texts
         '''
+
         # Encode embeddings
         query_embeds = await self.encode_image(queries)
         candidate_embeds = await self.encode_text(candidates)
